@@ -7,8 +7,7 @@ public class Cell
     public int Index { get; private set; }
     public Vector3 WorldPosition { get; private set; }
     public float Size { get; private set; }
-
-    public bool IsSelected = false;
+    public bool IsSelected { get; private set; }
 
     #endregion
 
@@ -25,9 +24,19 @@ public class Cell
 
     #region PublicMethods
 
+    public void Select()
+    {
+        IsSelected = true;
+    }
+
+    public void Deselect()
+    {
+        IsSelected = false;
+    }
+
     public void DebugDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
+        Gizmos.color = IsSelected ? Color.green : Color.yellow;
         Gizmos.DrawCube(WorldPosition, new Vector3(Size * 0.95f, Size * 0.01f, Size * 0.95f));
     }
 

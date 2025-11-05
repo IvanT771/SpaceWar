@@ -7,6 +7,9 @@ public class GridManager : MonoBehaviour
     [SerializeField]
     private Vector3 gridOrigin = Vector3.zero;
 
+    private Plane _gridPlane;
+    private Camera _camera;
+
     #endregion
 
     #region Properties
@@ -22,6 +25,12 @@ public class GridManager : MonoBehaviour
     #endregion
 
     #region LifeCycle
+
+    private void Awake()
+    {
+        _camera = Camera.main;
+        Initialize();
+    }
 
     private void OnValidate()
     {
@@ -60,6 +69,20 @@ public class GridManager : MonoBehaviour
         return true;
     }
 
+    public bool TryGetCellByMousePosition(Vector3 mousePosition, out Cell cell)
+    {
+        cell = null;
+        var ray = _camera.ScreenPointToRay(mousePosition);
+
+        if (_gridPlane.Raycast(ray, out var enter))
+        {
+            var point = ray.GetPoint(enter);
+            return TryGetCellByWorldPosition(point, out cell);
+        }
+
+        return false;
+    }
+
     #endregion
 
     #region PrivateMethods
@@ -84,6 +107,8 @@ public class GridManager : MonoBehaviour
                 Cells[index] = cell;
             }
         }
+
+        _gridPlane = new Plane(Vector3.up, gridOrigin);
     }
 
     private int GetLineIndex(int x, int y)
