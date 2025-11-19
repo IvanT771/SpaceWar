@@ -41,7 +41,7 @@ public class PlaceableSystem : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            _factoryBuildings.Create(_currentCell.WorldPosition);
+            //_factoryBuildings.Create(_currentCell.WorldPosition);
         }
     }
 
