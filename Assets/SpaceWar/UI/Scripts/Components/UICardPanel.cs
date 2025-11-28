@@ -10,7 +10,11 @@ public class UICardPanel : MonoBehaviour
     [SerializeField]
     private Transform content;
 
-    private UICard _currentSelect;
+    #endregion
+
+    #region Properties
+
+    public UICard CurrentSelect { get; private set; }
 
     #endregion
 
@@ -42,16 +46,16 @@ public class UICardPanel : MonoBehaviour
 
     private void Card_OnClick(UICard card)
     {
-        if (_currentSelect == card)
+        if (CurrentSelect == card)
             return;
 
-        if (_currentSelect != null)
+        if (CurrentSelect != null)
         {
-            _currentSelect.UnSelect();
+            CurrentSelect.UnSelect();
         }
 
-        _currentSelect = card;
-        _currentSelect.Select();
+        CurrentSelect = card;
+        CurrentSelect.Select();
     }
 
     private void Clear()

@@ -41,7 +41,16 @@ public class PlaceableSystem : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            //_factoryBuildings.Create(_currentCell.WorldPosition);
+            if(_currentCell ==  null) 
+                return;
+
+            var view = ViewsManager.GetView<UIGameplayView>();
+            var selectedCard = view.GetSelectedCard();
+
+            if (selectedCard == null)
+                return;
+
+            _factoryBuildings.Create(selectedCard, _currentCell.WorldPosition);
         }
     }
 
