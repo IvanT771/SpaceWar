@@ -9,6 +9,10 @@ public class Cell
     public float Size { get; private set; }
     public bool IsSelected { get; private set; }
 
+    public bool IsEmpty => GridObject == null;
+
+    public GridObject GridObject { get; private set; }
+
     #endregion
 
     #region Construct
@@ -23,6 +27,17 @@ public class Cell
     #endregion
 
     #region PublicMethods
+
+    public void Place(GridObject gridObject)
+    {
+        if (GridObject != null)
+        {
+            Debug.LogError("Ячейка занята!");
+            return;
+        }
+
+        GridObject = gridObject;
+    }
 
     public void Select()
     {

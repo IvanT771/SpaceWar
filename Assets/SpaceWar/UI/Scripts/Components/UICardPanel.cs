@@ -40,6 +40,14 @@ public class UICardPanel : MonoBehaviour
         }
     }
 
+    public void Unselect()
+    {
+        if (CurrentSelect != null)
+            CurrentSelect.UnSelect(); 
+
+        CurrentSelect = null;
+    }
+
     #endregion
 
     #region PrivateMethods

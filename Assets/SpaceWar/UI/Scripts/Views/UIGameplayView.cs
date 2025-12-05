@@ -19,5 +19,10 @@ public class UIGameplayView : UIView
         return null;
     }
 
+    public void UnselectCard()
+    {
+        uICardPanel.Unselect();
+    }
+
     #endregion
 }

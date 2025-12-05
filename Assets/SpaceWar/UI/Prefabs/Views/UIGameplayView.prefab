@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 6585318171137919053}
   - component: {fileID: 3642004433981551031}
   - component: {fileID: 5441724594671227186}
+  - component: {fileID: 2088071804872739959}
   m_Layer: 0
   m_Name: BankPanel
   m_TagString: Untagged
@@ -207,6 +208,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2088071804872739959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921447272702868457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a5386d8d88b544b9855e0132c92b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  valueText: {fileID: 3581185840518166084}
 --- !u!1 &1400873803879235357
 GameObject:
   m_ObjectHideFlags: 0

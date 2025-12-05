@@ -6,6 +6,7 @@ public class PlaceableSystem : MonoBehaviour
 
     private GridManager _gridManager;
     private FactoryBuildings _factoryBuildings;
+    private Bank _bank;
 
     private Cell _currentCell = null;
     private bool _isInitialized = false;
@@ -41,7 +42,7 @@ public class PlaceableSystem : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if(_currentCell ==  null) 
+            if (_currentCell == null)
                 return;
 
             var view = ViewsManager.GetView<UIGameplayView>();
@@ -50,7 +51,16 @@ public class PlaceableSystem : MonoBehaviour
             if (selectedCard == null)
                 return;
 
-            _factoryBuildings.Create(selectedCard, _currentCell.WorldPosition);
+            if (!_currentCell.IsEmpty)
+                return;
+
+            if (!_bank.TryBuy(selectedCard.Coast))
+                return;
+
+            view.UnselectCard();
+
+            var gridObject = _factoryBuildings.Create(selectedCard, _currentCell.WorldPosition);
+            _currentCell.Place(gridObject);
         }
     }
 
@@ -58,10 +68,11 @@ public class PlaceableSystem : MonoBehaviour
 
     #region PublicMethods
 
-    public void Initialize(FactoryBuildings factoryBuildings, GridManager gridManager)
+    public void Initialize(FactoryBuildings factoryBuildings, GridManager gridManager, Bank bank)
     {
         _factoryBuildings = factoryBuildings;
         _gridManager = gridManager;
+        _bank = bank;
 
         _isInitialized = true;
     }

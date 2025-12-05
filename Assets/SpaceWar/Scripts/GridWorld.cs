@@ -3,13 +3,6 @@ using UnityEngine;
 [DefaultExecutionOrder(-100)]
 public class GridWorld : MonoBehaviour
 {
-    #region Fields
-
-    [SerializeField]
-    private GameObject cubePrefab;
-
-    #endregion
-
     #region Properties
 
     public static GridWorld Instance { get; private set; }
@@ -25,6 +18,8 @@ public class GridWorld : MonoBehaviour
 
     public FactoryBuildings FactoryBuildings { get; private set; }
 
+    public Bank Bank { get; private set; }
+
     #endregion
 
     #region LifeCycle
@@ -33,7 +28,8 @@ public class GridWorld : MonoBehaviour
     {
         Instance = this;
         FactoryBuildings = new();
-        PlaceableSystem.Initialize(FactoryBuildings, GridManager);
+        Bank = new(5);
+        PlaceableSystem.Initialize(FactoryBuildings, GridManager, Bank);
     }
 
     #endregion
